@@ -18,7 +18,7 @@ You should record all development details, comply with the following requirement
 
 - Record all development activities in `logs/` directory
 - Each operator gets its own subdirectory under `logs/`
-- Track: tool calls, file accesses, network accesses, failure retries, context consumption
+- Track: process context, tool calls, file accesses, network accesses, failure retries, context consumption
     - Each time you access LLM, record the prompts.
     - Each time you invoke tools, record the tool use and result info.
     - Each time you access docs, record the activity details.
@@ -26,6 +26,7 @@ You should record all development details, comply with the following requirement
     - Each time you invoke tools failed, record the failure reason and details.
     - Each time you build codes failed, record the failure reason and details.
     - Each time you run test failed,  record the failure reason and details.
+    - After the development ends, to count the number of context tokens consumed by the Agent during this development process, you can call Claude's command(`/context`) to check.
 
 
 ## Development Guide
