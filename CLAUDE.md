@@ -6,56 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a Huawei CANN Ascend C operator development template for developing custom operators using Huawei's Ascend AI processors. The project provides a complete workflow for developing, building, and testing custom operators using Ascend C programming language.
 
-## Key Commands
-
-### Environment Setup
-
-```bash
-# Enter the Docker development environment
-./env_setup.sh
-
-# Inside the container, set environment variables
-source /usr/local/Ascend/ascend-toolkit/set_env.sh
-export ASCEND_INSTALL_PATH=/usr/local/Ascend/ascend-toolkit/latest
-```
-
-### Build and Test
-
-```bash
-# Enter Docker development environment
-./env_setup.sh
-
-# Inside container, set environment variables
-source /usr/local/Ascend/ascend-toolkit/set_env.sh
-export ASCEND_INSTALL_PATH=/usr/local/Ascend/ascend-toolkit/latest
-
-# Navigate to operator directory and run tests
-cd ops/sub_custom
-chmod a+x run.sh
-bash run.sh -r cpu -v Ascend910B
-```
-
-### Manual Build Process
-
-```bash
-# Clean build directories
-rm -rf build out
-
-# Configure with CMake
-cmake -B build -DRUN_MODE=cpu -DSOC_VERSION=Ascend910B -DCMAKE_BUILD_TYPE=Debug
-
-# Build the project
-cmake --build build -j
-
-# Install to out directory
-cmake --install build
-```
-
 ## Architecture
 
 ### Directory Structure
 
-- `samples/` - Example operator implementations
+- `samples/` - Example for operator developer
   - `add_custom/` - Sample addition operator
     - `add_custom.cpp` - Kernel function implementation
     - `main.cpp` - Host-side application code
@@ -65,68 +20,46 @@ cmake --install build
       - `gen_data.py` - Generate input and golden data
       - `verify_result.py` - Validate operator output
 
-- `docs/` - Development documentation
+- `docs/` - Development documentation for agents
   - `ascendc_guide.md` - Links to official Ascend C documentation
 
 - `ops/` - Agent-developed operators, each in its own subdirectory
 
-### Core Components
+- `logs/` - Operator Developer agent should record the developing process in this folder, each in its own subdirectory, used by evaluation agent to analyse.
 
-1. **Kernel Functions** (`add_custom.cpp`):
-   - Implemented using Ascend C API with `__aicore__` decorator
-   - Uses SPMD (Single Program Multiple Data) programming model
-   - Manages tensor operations, memory buffers, and compute pipelines
+## Agent Framework
 
-2. **Host Application** (`main.cpp`):
-   - Handles memory allocation and data transfer
-   - Uses ACL (Ascend Computing Language) APIs
-   - Supports both CPU debug and NPU execution modes
+This project uses Claude Code's SubAgent functionality with two specialized agents:
 
-3. **Operator Definition** (`AddCustom.json`):
-   - Defines operator inputs, outputs, and data types
-   - Specifies tensor formats and parameter requirements
+### Operator Development Agent (.claude/agents/op-developer.md)
 
-4. **Test Infrastructure**:
-   - Python scripts for data generation and result verification
-   - Binary file I/O for tensor data
-   - Numerical precision validation with tolerance settings
+Responsible for complete operator development lifecycle:
+- Develops custom operators from prototype definition to testing
+- Creates all necessary files (kernel functions, host applications, build scripts)
+- Follows project directory structure and development workflow
+- Records all development activities in `logs/` directory for evaluation
 
-## Development Workflow
+**Usage**: Launch this agent when you need to develop a new operator from scratch.
 
-1. **Define Operator**: Create JSON prototype file specifying inputs/outputs
-2. **Implement Kernel**: Write Ascend C kernel function with proper memory management
-3. **Create Host Code**: Write main application to call the kernel
-4. **Build**: Use CMake to compile for target platform (CPU/NPU)
-5. **Test**: Generate test data and verify operator correctness
+### Complexity Evaluation Agent (.claude/agents/dev-evaluator.md)
 
-## Important Notes
+Evaluates operator development complexity based on development records:
+- Analyzes development logs from `logs/` directory
+- Provides complexity scores and detailed analysis reports
+- Identifies optimization opportunities for development process
+- Supports single operator evaluation and multi-operator comparison
 
-- **Operator Organization**: All agent-developed operators must be placed in the `ops/` directory, each in its own subdirectory
-- **Testing**: Each operator directory must contain its own `run.sh` script for building and testing
-- **No Root Scripts**: Do not create test scripts in the project root directory
-- **Docker Environment**: The project uses Docker containers for development environment isolation
-- **Ascend C**: Requires specific compiler flags and library linking
-- **Execution Modes**: CPU mode for debugging, NPU mode for actual hardware execution
-- **Data Types**: Primarily float16 (half precision) for AI workloads
-- **Memory Management**: Follows Ascend C's GM (Global Memory) and LocalTensor patterns
+**Usage**: Launch this agent to evaluate the complexity of operator development processes.
 
-## Documentation References
+### Development Workflow with Agents
 
-See `docs/ascendc_guide.md` for official Huawei Ascend C documentation links covering:
-- Operator development examples
-- ACL interface reference
-- Ascend C API manual
-- Vector operator development
-- Debugging tools
+1. **Operator Development**: Use the Operator Development Agent to create new operators
+2. **Process Recording**: All development activities are automatically logged in `logs/`
+3. **Complexity Evaluation**: Use the Complexity Evaluation Agent to analyze development efficiency
+4. **Process Improvement**: Apply optimization recommendations to improve future development
 
-## Build Modes
+### Logging Requirements
 
-- `cpu`: CPU debug mode using simulator libraries
-- `npu`: NPU execution mode for actual hardware
-- `sim`: Simulator mode (alternative to CPU debug)
-
-## Supported SOC Versions
-
-- Ascend910A, Ascend910B
-- Ascend310B1-B4, Ascend310P1, Ascend310P3
-- Ascend910B1-B4
+- Each operator development process creates detailed logs in `logs/[operator_name]/`
+- Logs include: tool calls, file accesses, network accesses, failure retries, context consumption
+- Logs serve as the basis for complexity evaluation and process optimization
