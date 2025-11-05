@@ -35,6 +35,7 @@ You should record all development details, comply with the following requirement
 #### 1. Operator Definition
 - Create operator prototype JSON file defining inputs, outputs, and data types
 - Reference `samples/add_custom/AddCustom.json` for format
+- Design the kernel function implementation logic of the operator, determine which mathematical formulas to use, and what underlying Ascend C APIs are needed to implement the corresponding algorithm. Search the API manual to match all the corresponding APIs.
 
 #### 2. Kernel Function Implementation
 - Write Ascend C kernel functions using `__aicore__` decorator
