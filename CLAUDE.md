@@ -22,14 +22,17 @@ export ASCEND_INSTALL_PATH=/usr/local/Ascend/ascend-toolkit/latest
 ### Build and Test
 
 ```bash
-# Give execution permission to run.sh (first time only)
+# Enter Docker development environment
+./env_setup.sh
+
+# Inside container, set environment variables
+source /usr/local/Ascend/ascend-toolkit/set_env.sh
+export ASCEND_INSTALL_PATH=/usr/local/Ascend/ascend-toolkit/latest
+
+# Navigate to operator directory and run tests
+cd ops/sub_custom
 chmod a+x run.sh
-
-# Build and test in CPU mode (for container environment)
 bash run.sh -r cpu -v Ascend910B
-
-# Build and test in NPU mode (for actual hardware)
-bash run.sh -r npu -v Ascend910B
 ```
 
 ### Manual Build Process
@@ -65,7 +68,7 @@ cmake --install build
 - `docs/` - Development documentation
   - `ascendc_guide.md` - Links to official Ascend C documentation
 
-- `cmake/` - CMake module files for CPU and NPU builds
+- `ops/` - Agent-developed operators, each in its own subdirectory
 
 ### Core Components
 
@@ -98,11 +101,14 @@ cmake --install build
 
 ## Important Notes
 
-- The project uses Docker containers for development environment isolation
-- Ascend C requires specific compiler flags and library linking
-- CPU mode is for debugging, NPU mode is for actual hardware execution
-- Data types are primarily float16 (half precision) for AI workloads
-- Memory management follows Ascend C's GM (Global Memory) and LocalTensor patterns
+- **Operator Organization**: All agent-developed operators must be placed in the `ops/` directory, each in its own subdirectory
+- **Testing**: Each operator directory must contain its own `run.sh` script for building and testing
+- **No Root Scripts**: Do not create test scripts in the project root directory
+- **Docker Environment**: The project uses Docker containers for development environment isolation
+- **Ascend C**: Requires specific compiler flags and library linking
+- **Execution Modes**: CPU mode for debugging, NPU mode for actual hardware execution
+- **Data Types**: Primarily float16 (half precision) for AI workloads
+- **Memory Management**: Follows Ascend C's GM (Global Memory) and LocalTensor patterns
 
 ## Documentation References
 

@@ -118,8 +118,7 @@ function setup_env() {
     else
         # Non-interactive mode - run basic shell with help message
         start_exec "setup docker environment of"
-        echo "Running in non-interactive mode. Use './ccup.sh -u -b -t' to build and test the project."
-        $docker_cmd run -v $docker_src_path:/$project_name -w $docker_work_dir $docker_image /bin/bash -c "echo 'Docker environment ready. Use ./ccup.sh commands to build and test.' && ./ccup.sh -h"
+        $docker_cmd run -v $docker_src_path:/$project_name -w $docker_work_dir $docker_image /bin/bash
         if [ $? -ne 0 ]; then
             failed_exec "setup docker environment"
             exit 1
