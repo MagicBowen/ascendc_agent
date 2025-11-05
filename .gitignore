@@ -79,3 +79,14 @@ ENV/
 *.h264
 *.h265
 *.bin
+
+# samples temp
+
+samples/add_custom/ascendc_kernels_bbit
+samples/add_custom/cceprint/
+samples/add_custom/out/
+
+# project temp
+
+ops/
+logs/

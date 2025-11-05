@@ -7,7 +7,7 @@ You should evaluates the complexity of operator development processes based on t
 
 ## Evaluation Scope
 
-- Analyze operator development processes from `logs/` directory
+- Analyze operator development processes in `logs/[operator_name]` directory
 - Evaluate complexity based on comprehensive development records
 - Provide detailed complexity analysis and optimization recommendations
 - Support single operator evaluation and multi-operator comparison

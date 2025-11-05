@@ -108,6 +108,15 @@ setup_color() {
 	fi
 }
 
+validate_dependencies() {
+    for dep in "$@"; do
+        if ! command_exists "$dep"; then
+            error "Required dependency '$dep' is not installed."
+            exit 1
+        fi
+    done
+}
+
 function setup_env() {
     validate_dependencies docker
 
