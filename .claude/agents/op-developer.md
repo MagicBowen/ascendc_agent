@@ -28,29 +28,7 @@ You should record all development details, comply with the following requirement
     - Each time you run test failed,  record the failure reason and details.
     - After the development ends, to count the number of context tokens consumed by the Agent during this development process, you can call Claude's command(`/context`) to check.
 
-
 ## Development Guide
-
-### Core Components
-
-1. **Kernel Functions** (`add_custom.cpp`):
-   - Implemented using Ascend C API with `__aicore__` decorator
-   - Uses SPMD (Single Program Multiple Data) programming model
-   - Manages tensor operations, memory buffers, and compute pipelines
-
-2. **Host Application** (`main.cpp`):
-   - Handles memory allocation and data transfer
-   - Uses ACL (Ascend Computing Language) APIs
-   - Supports both CPU debug and NPU execution modes
-
-3. **Operator Definition** (`AddCustom.json`):
-   - Defines operator inputs, outputs, and data types
-   - Specifies tensor formats and parameter requirements
-
-4. **Test Infrastructure**:
-   - Python scripts for data generation and result verification
-   - Binary file I/O for tensor data
-   - Numerical precision validation with tolerance settings
 
 ### Development Process
 
@@ -63,12 +41,14 @@ You should record all development details, comply with the following requirement
 - Implement SPMD programming model
 - Manage tensor operations, memory buffers, and compute pipelines
 - Reference `samples/add_custom/add_custom.cpp` for implementation patterns
+- Kernel function should be implemented by using Ascend C API. All callable Ascend C APIs, along with their parameters and usage, need to be WebFetch/WebSearch in the related URL in `docs/ascendc_guide.md`; you must not guess.
 
 #### 3. Host Application Development
 - Create main application to call the kernel
 - Handle memory allocation and data transfer using ACL APIs
 - Support both CPU debug and NPU execution modes
 - Reference `samples/add_custom/main.cpp` for implementation patterns
+- All callable ACL APIs, along with their parameters and usage, need to be WebFetch/WebSearch in the related URL in `docs/ascendc_guide.md`; you must not guess.
 
 #### 4. Build Configuration
 - Create CMakeLists.txt with proper compilation options and library linking
