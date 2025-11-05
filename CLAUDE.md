@@ -22,10 +22,15 @@ This is a Huawei CANN Ascend C operator development template for developing cust
 
 - `docs/` - Development documentation for agents
   - `ascendc_guide.md` - Links to official Ascend C documentation
+  - `ascendc_apis.md` - Ascend C device APIs that kernel function could use
 
 - `ops/` - Agent-developed operators, each in its own subdirectory
 
 - `logs/` - Operator Developer agent should record the developing process in this folder, each in its own subdirectory, used by evaluation agent to analyse.
+
+- `tests/` - Users use this to record some test input/output information; the Agent doesn't need to care.
+
+- `env_setup.sh` - This shell script help operator developer agent enter the docker env first before build and test.
 
 ## Agent Framework
 

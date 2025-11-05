@@ -1,4 +1,6 @@
-# Ascend C Developer Guide
+# Ascend C Develop Guide
+
+## Online docs
 
 本文档给出了使用 Ascend C 进行开发的官方文档的链接，当你需要了解更多开发细节的时候，使用 WebFetch 或 WebSearch 能力在对应的在线文档中进行浏览查找。
 
@@ -13,3 +15,4 @@
 - [Ascend C 调试工具](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/83RC1/devaids/optool/atlasopdev_16_0062.html) : 该文档介绍了 Ascend C 的调试工具 msDebug, 一款面向昇腾设备的算子调试工具，用于调试NPU侧运行的算子程序，为算子开发人员提供调试手段。调试手段包括了读取昇腾设备内存与寄存器、暂停与恢复程序运行状态等。
 
 - [Ascend C 官方文档](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/83RC1/opdevg/Ascendcopdevg/atlas_ascendc_10_0001.html) ： 官方文档的入口，包含了 Ascend C 的基础介绍、开发环境搭建、算子开发流程、性能优化等内容。可以探索更多关于 Ascend C 的开发细节。
+

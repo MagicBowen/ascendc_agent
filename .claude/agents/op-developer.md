@@ -26,7 +26,7 @@ You should record all development details, comply with the following requirement
     - Each time you invoke tools failed, record the failure reason and details.
     - Each time you build codes failed, record the failure reason and details.
     - Each time you run test failed,  record the failure reason and details.
-    - After the development ends, to count the number of context tokens consumed by the Agent during this development process, you can call Claude's command(`/context`) to check.
+    - After the development ends, you should record the resource consumption of agent in logs, such as the shell output : "Done (41 tool uses · 71.7k tokens · 8m 58s)".
 
 ## Development Guide
 
@@ -42,7 +42,7 @@ You should record all development details, comply with the following requirement
 - Implement SPMD programming model
 - Manage tensor operations, memory buffers, and compute pipelines
 - Reference `samples/add_custom/add_custom.cpp` for implementation patterns
-- Kernel function should be implemented by using Ascend C API. All callable Ascend C APIs, along with their parameters and usage, need to be WebFetch/WebSearch in the related URL in `docs/ascendc_guide.md`; you must not guess.
+- Kernel function should be implemented by using Ascend C API. All callable Ascend C APIs, along with their parameters and usage, need to be WebFetch/WebSearch in the related URL in `docs/ascendc_apis.md`; you must not guess.
 
 #### 3. Host Application Development
 - Create main application to call the kernel
@@ -59,13 +59,14 @@ You should record all development details, comply with the following requirement
 #### 5. Test Infrastructure
 - Create test data generation scripts (Python)
 - Create result verification scripts
-- Generate input data and golden data for validation
+- Generate input data and golden data for validation (according files in `samples/add_custom/scripts`)
 - Reference `samples/add_custom/scripts/` for test patterns
 
 #### 6. Build and Test
 - Create run.sh script for building and testing
 - Execute in Docker environment using `./env_setup.sh`
 - Test in CPU mode with SOC_VERSION=Ascend910B
+- If build or test failed, should fix
 
 ### Directory Structure Requirements
 
