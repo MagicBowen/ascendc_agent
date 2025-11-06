@@ -88,5 +88,5 @@ samples/add_custom/out/
 
 # project temp
 
-ops/
-logs/
+# ops/
+# logs/
