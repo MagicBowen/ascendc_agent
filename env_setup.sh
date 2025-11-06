@@ -3,9 +3,7 @@
 # project config
 project_path=$(cd "$(dirname "$0")"; pwd)
 project_name="${project_path##*/}"
-build="build"
-doc_doxygen="./docs/doxygen"
-docker_image="cann_ascendc_agent:v1"
+docker_image="swr.cn-south-1.myhuaweicloud.com/ascendhub/cann:8.3.rc1.alpha002-910b-ubuntu22.04-py3.11"
 
 # After enter the docker container, you may need to set the Ascend environment variables:
 # source /usr/local/Ascend/ascend-toolkit/set_env.sh
@@ -89,25 +87,6 @@ run_command() {
     fi
 }
 
-setup_color() {
-	# Only use colors if connected to a terminal
-	if [ -t 1 ]; then
-		RED=$(printf '\033[31m')
-		GREEN=$(printf '\033[32m')
-		YELLOW=$(printf '\033[33m')
-		BLUE=$(printf '\033[34m')
-		BOLD=$(printf '\033[1m')
-		RESET=$(printf '\033[m')
-	else
-		RED=""
-		GREEN=""
-		YELLOW=""
-		BLUE=""
-		BOLD=""
-		RESET=""
-	fi
-}
-
 validate_dependencies() {
     for dep in "$@"; do
         if ! command_exists "$dep"; then
@@ -136,5 +115,4 @@ function setup_env() {
     fi
 }
 
-setup_color
 setup_env
