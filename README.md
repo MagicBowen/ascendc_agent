@@ -8,7 +8,7 @@ AI Agent 在执行算子开发的过程中，会把过程上下文都记录下�
 
 ## Claude Code 工程结构
 
-![](tests/images/project-config.png)
+<div align="center"><img src="tests/images/project-config.png" width="60%"></div>
 
 ## Agent 执行规范
 
@@ -153,6 +153,50 @@ Agent 启动容器和执行正常，遇到错误会自行分析并解决错误
 ### 开发度量能力
 
 评估 Agent 可以按照要求进行评估输出，但是目前缺乏度量模型，评估 Agent 仅仅是做了通用的分析，需要细化指标和参照基线。
+
+**sinh 算子开发过程的评估输出结果样例：**
+
+```
+  The complexity evaluation agent has completed its analysis of the sinh operator development process. Here's a summary of the key
+  findings:
+
+  Sinh Operator Development Complexity Evaluation
+
+  Overall Complexity Score: 6/10
+
+  Key Findings:
+
+  ✅ Strengths:
+  - Well-structured development process following operator lifecycle
+  - Successful kernel compilation with proper Ascend C API usage
+  - Comprehensive test infrastructure with data generation and verification
+  - Good context efficiency (71.7k tokens for complete development)
+  - Minimal external dependencies and network resource usage
+
+  ⚠️ Challenges:
+  - Environment-related linking issues prevented full testing
+  - Moderate Ascend C API learning curve for memory management
+  - Build system configuration complexity
+  - Several failure retries during development
+
+  📊 Detailed Analysis:
+  - File Access: 10 files created/modified with sequential development pattern
+  - Tool Usage: 41 tool calls with high success rate
+  - Failure Resolution: 4 key issues identified and resolved efficiently
+  - Development Time: 28 minutes for complete operator lifecycle
+
+  🔧 Optimization Recommendations:
+  1. Template-based development for common operator patterns
+  2. Enhanced environment validation scripts
+  3. Standardized CMake configurations for unary operators
+  4. Better error handling for common Ascend C API issues
+
+  The evaluation confirms that while the sinh operator development faced some environment challenges, the core implementation was
+  successful and followed best practices for Huawei CANN Ascend C operator development.
+
+  The development process provides valuable insights for improving future operator development workflows, particularly around
+  environment management and template-based acceleration.
+```
 
 ## 问题发现
 
