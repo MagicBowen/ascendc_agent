@@ -10,7 +10,16 @@ AI Agent 在执行算子开发的过程中，会把过程上下文都记录下�
 
 工程验证采用的 AI Coding Agent 工具为 Claude Code，主要原因是其能力领先（强大的本地 agent 调度、shell 命令执行、MCP 支持...），另外其可配置性强（相比较 Codex， Claude Code 支持用户灵活配置的 Commands， Hooks， SubAgents...），适合同时进行开发和度量的灵活配置要求；
 
-首先需要下载安装 Claude Code，申请 DeepSeek 的 API，然后本地配置 Claude Code 的 `ANTHROPIC_BASE_URL`、`ANTHROPIC_AUTH_TOKEN` 和 `ANTHROPIC_MODEL` 等环境变量，让其指向 DeepSeek；（具体参考在线资料，或者借助 LLM 指导进行 Claude Code 安装和模型 API 配置） 
+首先需要下载安装 Claude Code，申请 DeepSeek 的 API，然后本地配置 Claude Code 的 `ANTHROPIC_BASE_URL`、`ANTHROPIC_AUTH_TOKEN` 和 `ANTHROPIC_MODEL` 等环境变量，让其指向 DeepSeek；（具体参考在线资料，或者借助 LLM 指导进行 Claude Code 安装和模型 API 配置）
+
+注意，**Claude Code 需要接入的是 DeepSeek 的 Anthropic API**, 环境变量配置如下：
+
+```sh
+export ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic
+export ANTHROPIC_AUTH_TOKEN="DEEPSEEK_API_KEY"
+export ANTHROPIC_MODEL=deepseek-reasoner
+export ANTHROPIC_SMALL_FAST_MODEL=deepseek-chat
+```
 
 配置验证 Claude Code 可以正常工作之后，克隆本 [repo](https://github.com/MagicBowen/ascendc_agent)，使用 Claude 在此 repo 的本地目录上进行工作。
 
