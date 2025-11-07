@@ -16,17 +16,19 @@ AI Agent 在执行算子开发的过程中，会把过程上下文都记录下�
 
 ## Claude Code 工程结构
 
-本工程结构如下：
+工程中基于 Claude Code 配置了两个 SubAgent 如下：
 
-<div align="center"><img src="tests/images/project-config.png" width="60%"></div>
-
-基于 Claude Code 配置的两个 SubAgent 如下：
 - Operator Developer: 用于遵循规范，参考文档和示例，完成用户指定的 Ascend C 算子开发、构建和测试的全过程，并对开发过程进行记录；
 - Complexity Evaluator: 用于对 Operator Developer 的开发过程记录进行复杂度分析和评估，生成各个维度的评估结果；
 
 工程中包含了用于支持 Operator Developer 和 Complexity Evaluator 工作的规范要求文档，参考代码示例以及可以调用的工程脚本；
 
 为了让用户易用使用，同时为 Claude Code 配置了快捷 Command（develop/evaluate）, 用于快速调动 SubAgent 进行开发和评估工作。
+
+整体的工程结构如下图：
+
+<div align="center"><img src="tests/images/project-config.png" width="60%"></div>
+
 
 ## Agent 执行规范
 
@@ -175,7 +177,7 @@ Agent 启动容器和执行正常，遇到错误会自行分析并解决错误
 
 **sinh 算子开发过程的评估输出结果样例：**
 
-```
+```md
   The complexity evaluation agent has completed its analysis of the sinh operator development process. Here's a summary of the key
   findings:
 
@@ -219,7 +221,7 @@ Agent 启动容器和执行正常，遇到错误会自行分析并解决错误
 
 **sub_custom 算子开发过程的评估输出结果样例：**
 
-```
+```md
   sub_custom 算子开发复杂性评估报告
 
   总体复杂度评分：6.5/10（中等复杂度）
