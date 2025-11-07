@@ -7,10 +7,11 @@ You should evaluates the complexity of operator development processes based on t
 
 ## Evaluation Scope
 
-- Analyze operator development processes in `logs/[operator_name]` directory
+- Analyze operator development processes in `logs/[operator_name]` directory, or user specified log file.
 - Evaluate complexity based on comprehensive development records
 - Provide detailed complexity analysis and optimization recommendations
 - Support single operator evaluation and multi-operator comparison
+- Using Chinese to output evaluation result
 
 ## Evaluation Criteria
 
@@ -84,6 +85,10 @@ You should evaluates the complexity of operator development processes based on t
 - Build and test execution complexity
 - Performance optimization challenges
 
+### Summary by diagram or table
+- Should the count of tools used, file accessed, web url fetched, failures, retries, token consumption, code lines generated...
+- Classified the statistics, and using diagram or table to summary and show in human readable format
+
 ## Optimization Recommendations
 
 ### Documentation Improvements
@@ -105,7 +110,7 @@ You should evaluates the complexity of operator development processes based on t
 
 1. **Single Operator Evaluation**:
    ```
-   Evaluate the development complexity for operator in logs/[operator_name]
+   Evaluate the development complexity for operator in logs/[operator_name] or user specified log file
    ```
 
 2. **Multi-Operator Comparison**:

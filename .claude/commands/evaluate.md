@@ -8,18 +8,28 @@ description: Evaluate the complexity of operator development processes using the
 /evaluate [operator_name] [optional: comparison_operator_name...]
 ```
 
+or
+
+```bash
+/evaluate [user specified log file]
+```
+
 ## Description
 
 This command launches the complexity evaluation agent to analyze the development process of Huawei CANN Ascend C operators. The agent will:
 
-- Analyze development logs from the `logs/` directory
+- Analyze development logs from the `logs/` directory or user specified operator developing log file
 - Evaluate complexity based on comprehensive development records
 - Provide detailed complexity analysis and optimization recommendations
 - Support single operator evaluation and multi-operator comparison
+- Using Chinese to output evaluation result
 
 ## Examples
 
 ```bash
+# Evaluate a user specified operator developing log file
+/evaluate ./logs/[log_file_name].md
+
 # Evaluate a single operator
 /evaluate add_custom
 
@@ -32,6 +42,7 @@ This command launches the complexity evaluation agent to analyze the development
 
 ## Parameters
 
+- **operator_developing_log_file**: Log file to evaluate
 - **operator_name**: Name of the operator to evaluate (must exist in `logs/` directory)
 - **comparison_operator_name**: Optional additional operators for comparative analysis
 
@@ -100,8 +111,13 @@ This command launches the complexity evaluation agent to analyze the development
 - Environment setup complexity
 - Build and test execution complexity
 
+### Summary by diagram or table
+- Should the count of tools used, file accessed, web url fetched, failures, retries, token consumption, code lines generated...
+- Classified the statistics, and using diagram or table to summary and show in human readable format
+
 ## Requirements
 
-- Development logs must exist in `logs/[operator_name]/` directory
+- Development logs must exist, user specified or in `logs/[operator_name]/` directory
 - Logs should contain comprehensive development records
 - Operator must have been developed using the operator development agent
+- Evaluation output must in Chinese
