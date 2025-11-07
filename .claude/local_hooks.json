@@ -1,0 +1,99 @@
+{
+  "hooks": {
+    "Stop": [ 
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/record_raw_input.py"
+          }
+        ]
+      }
+    ],
+//     "PreToolUse": [
+//       {
+//         "matcher": "",
+//         "hooks": [
+//           {
+//             "type": "command",
+//             "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/record_raw_input.py"
+//           }
+//         ]
+//       }
+//     ],
+//     "PostToolUse": [
+//       {
+//         "matcher": "",
+//         "hooks": [
+//           {
+//             "type": "command",
+//             "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/record_raw_input.py"
+//           }
+//         ]
+//       }
+//     ],
+//     "Notification": [
+//       {
+//         "hooks": [
+//           {
+//             "type": "command",
+//             "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/record_raw_input.py"
+//           }
+//         ]
+//       }
+//     ],
+//     "UserPromptSubmit": [
+//       {
+//         "hooks": [
+//           {
+//             "type": "command",
+//             "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/record_raw_input.py"
+//           }
+//         ]
+//       }
+//     ],
+    // "SubagentStop": [
+    //   {
+    //     "hooks": [
+    //       {
+    //         "type": "command",
+    //         "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/record_raw_input.py"
+    //       }
+    //     ]
+    //   }
+    // ],
+//     "PreCompact": [
+//       {
+//         "matcher": "",
+//         "hooks": [
+//           {
+//             "type": "command",
+//             "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/record_raw_input.py"
+//           }
+//         ]
+//       }
+//     ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/record_raw_input.py"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $CLAUDE_PROJECT_DIR/.claude/hooks/record_raw_input.py"
+          }
+        ]
+      }
+    ]
+  }
+}
